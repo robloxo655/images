@@ -132,6 +132,24 @@ style="
     style="width: 100%; height: 100%; object-fit: cover; display: block;"
   >
 </button>
+<button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/mario-63@main/index.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/super-mario-63-a-ridiculously-impressive-flash-game-v0-8y12r1EA1N_l6A1evwU3IvLQzQe2Y4RJo8FX4kC-JRk.webp"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
 
 <!--this is where the button code begins!-->
 <hr style="border: 0px solid white; margin: 20px 0;">
@@ -141,4 +159,3 @@ style="
 
 
        
-
