@@ -1,0 +1,144 @@
+<body style="background-color: black;">   
+        
+        
+        
+        
+        <!--this is where the new ui starts!-->
+                <button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/allgamespossible5@main/index.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://static.vecteezy.com/system/resources/previews/027/179/375/non_2x/google-docs-icon-logo-symbol-free-png.png"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+        <button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/gn-math2@main/new.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/gn-math.png"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+
+<button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/adofai@main/j.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/adofai.png"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+
+    <button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/dtr@main/index.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/deltarune%20image.png"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+ <button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/hk@main/index.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/hollow%20knight.png"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+<button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/balatro@main/index.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/balatro-non-stretch.jpg"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+<button 
+onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/getaway-shootout3@main/index.html?t=?t="+Date.now()).then(r=>r.text()).then(t=>{const w=window.open("about:blank");if(w){w.document.open();w.document.write(t);w.document.close();}});'
+style="
+  width: 200px;
+  height: 200px;
+  border: 3px solid #ffffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+"
+>
+  <img 
+    src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/getaway-shootout.png"
+    style="width: 100%; height: 100%; object-fit: cover; display: block;"
+  >
+</button>
+
+<!--this is where the button code begins!-->
+<hr style="border: 0px solid white; margin: 20px 0;">
+        <button          onclick='fetch("https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/homepage?t="+Date.now()).then(response => response.text()).then(text => {const newWin = window.open("about:blank", "_blank");if (newWin) {newWin.document.open();newWin.document.write(text);newWin.document.close();}});'          style="font-family: 'Pixelify Sans', sans-serif;   font-size: 24px;    margin: 0.5;   background: linear-gradient(90deg, blue, purple);   background-clip: text;   -webkit-background-clip: text;   color: transparent;   -webkit-text-fill-color: transparent;   display: inline-block;   border: 3px solid #1d1d1dff;;"         >homepage</button>
+        <!--this is where the button code ends!-->
+       
+
+
+       
+
