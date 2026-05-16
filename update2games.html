@@ -1,0 +1,197 @@
+<div style="text-align: center; margin-bottom: 30px; font-family: 'Pixelify Sans', sans-serif; color: white; background: #111; padding: 15px; border-radius: 15px; border: 1px solid #333; max-width: 550px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+  
+  <h2 onclick="toggleSettings()" style="margin: 0; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; user-select: none;">
+    Settings <span id="settingsArrow" style="transition: transform 0.3s;">▼</span>
+  </h2>
+
+  <div id="settingsContent" style="display: none; flex-direction: column; gap: 20px; align-items: center; margin-top: 20px; border-top: 1px solid #333; padding-top: 20px;">
+    
+    <div style="width: 90%; display: flex; align-items: center; justify-content: space-between;">
+      <label style="color: #bbb;">Tab Cloak:</label>
+      <select id="cloakPicker" onchange="applyAndSaveCloak()" style="padding: 8px; border-radius: 8px; background: #222; color: white; border: 1px solid #555; cursor: pointer; font-family: 'Pixelify Sans', sans-serif; width: 180px;">
+        <option value="default">Default (Citadel)</option>
+        <option value="none">None (Empty Tab)</option>
+        <option value="google">Google Search</option>
+        <option value="drive">Google Drive</option>
+        <option value="classroom">Google Classroom</option>
+        <option value="docs">Google Docs</option>
+      </select>
+    </div>
+
+    <div style="width: 90%; display: flex; align-items: center; justify-content: space-between;">
+      <label style="color: #bbb;">Preset BG:</label>
+      <select id="bgPicker" onchange="applyPresetBG()" style="padding: 8px; border-radius: 8px; background: #222; color: white; border: 1px solid #555; cursor: pointer; font-family: 'Pixelify Sans', sans-serif; width: 180px;">
+        <option value="black">Deep Black</option>
+        <option value="#1a1a1a">Dark Grey</option>
+        <option value="#0d1117">GitHub Dark</option>
+        <option value="#1e1e2e">Mocha Purple</option>
+        <option value="linear-gradient(135deg, #000428, #004e92)">Midnight Blue</option>
+      </select>
+    </div>
+
+    <div style="width: 90%; display: flex; align-items: center; justify-content: space-between;">
+      <label style="color: #bbb;">Title Colors:</label>
+      <div style="display: flex; gap: 10px;">
+        <input type="color" id="textCol1" value="#0000FF" onchange="applyTextGradient()" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer;">
+        <input type="color" id="textCol2" value="#800080" onchange="applyTextGradient()" style="width: 40px; height: 40px; border: none; background: none; cursor: pointer;">
+      </div>
+    </div>
+
+    <div style="width: 90%;">
+      <label style="display: block; margin-bottom: 8px; color: #bbb;">Custom Background URL</label>
+      <div style="display: flex; gap: 10px;">
+        <input type="text" id="bgInput" placeholder="Paste image link..." style="flex-grow: 1; padding: 10px; border-radius: 8px; background: #222; color: white; border: 1px solid #555; font-family: 'Pixelify Sans', sans-serif;">
+        <button onclick="applyAndSaveCustomBG()" style="padding: 8px 15px; background: #5d83f1; color: white; border: none; border-radius: 8px; cursor: pointer; font-family: 'Pixelify Sans', sans-serif; font-weight: bold;">Set</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleSettings() {
+    const content = document.getElementById('settingsContent');
+    const arrow = document.getElementById('settingsArrow');
+    content.style.display = (content.style.display === "none") ? "flex" : "none";
+    arrow.style.transform = (content.style.display === "flex") ? "rotate(180deg)" : "rotate(0deg)";
+  }
+
+  const cloaks = {
+    'default': { title: 'Citadel | Games', icon: 'https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/nebula.jpg' },
+    'google': { title: 'Google', icon: 'https://www.google.com/favicon.ico' },
+    'drive': { title: 'My Drive - Google Drive', icon: 'https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png' },
+    'classroom': { title: 'Classes', icon: 'https://ssl.gstatic.com/classroom/favicon.png' },
+    'docs': { title: 'Google Docs', icon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico' },
+    'none': { title: ' ', icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=' }
+  };
+
+  function applyCloakToCurrentPage(type) {
+    const cloak = cloaks[type] || cloaks['default'];
+    document.title = cloak.title;
+    let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    link.type = 'image/x-icon'; link.rel = 'shortcut icon'; link.href = cloak.icon;
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }
+
+  function applyAndSaveCloak() {
+    const val = document.getElementById('cloakPicker').value;
+    localStorage.setItem('selectedCloak', val);
+    applyCloakToCurrentPage(val);
+  }
+
+  function applyTextGradient() {
+    const c1 = document.getElementById('textCol1').value;
+    const c2 = document.getElementById('textCol2').value;
+    const titleText = document.getElementById('mainTitle');
+    titleText.style.background = `linear-gradient(90deg, ${c1}, ${c2})`;
+    titleText.style.webkitBackgroundClip = "text";
+    titleText.style.webkitTextFillColor = "transparent";
+    localStorage.setItem('titleCol1', c1);
+    localStorage.setItem('titleCol2', c2);
+  }
+
+  function applyPresetBG() {
+    const val = document.getElementById('bgPicker').value;
+    localStorage.removeItem('customBG');
+    localStorage.setItem('selectedPresetBG', val);
+    updateBackground(val, false);
+  }
+
+  function applyAndSaveCustomBG() {
+    const url = document.getElementById('bgInput').value;
+    if(url) {
+      localStorage.removeItem('selectedPresetBG');
+      localStorage.setItem('customBG', url);
+      updateBackground(url, true);
+    }
+  }
+
+  function updateBackground(value, isImage) {
+    document.body.style.backgroundImage = isImage ? `url('${value}')` : (value.includes('gradient') ? value : "none");
+    document.body.style.backgroundColor = (isImage || value.includes('gradient')) ? "transparent" : value;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.backgroundPosition = "center";
+  }
+
+  window.onload = function() {
+    // Load Cloak
+    let savedCloak = localStorage.getItem('selectedCloak') || 'default';
+    document.getElementById('cloakPicker').value = savedCloak;
+    applyCloakToCurrentPage(savedCloak);
+
+    // Load Title Colors
+    let tc1 = localStorage.getItem('titleCol1') || '#0000FF';
+    let tc2 = localStorage.getItem('titleCol2') || '#800080';
+    document.getElementById('textCol1').value = tc1;
+    document.getElementById('textCol2').value = tc2;
+    applyTextGradient();
+
+    // Load Background
+    let custom = localStorage.getItem('customBG');
+    let preset = localStorage.getItem('selectedPresetBG') || 'black';
+    if (custom) {
+      document.getElementById('bgInput').value = custom;
+      updateBackground(custom, true);
+    } else {
+      document.getElementById('bgPicker').value = preset;
+      updateBackground(preset, false);
+    }
+  }
+
+  function launchGame(url) {
+    const savedCloak = localStorage.getItem('selectedCloak') || 'default';
+    const cloak = cloaks[savedCloak];
+    fetch(url + (url.includes('?') ? '&' : '?') + "t=" + Date.now()).then(r => r.text()).then(t => {
+      const w = window.open("about:blank");
+      if (w) {
+        w.document.open();
+        w.document.write(t);
+        w.document.title = cloak.title;
+        const link = w.document.createElement("link");
+        link.rel = "icon"; link.href = cloak.icon;
+        w.document.head.appendChild(link);
+        w.document.close();
+      }
+    });
+  }
+</script>
+
+<title>Citadel | Games</title>
+<link id="favicon" rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/nebula.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+<body style="background-color: black; margin: 0; padding: 20px; min-height: 100vh;">
+
+  <p id="mainTitle" style="font-family: 'Pixelify Sans', sans-serif; font-size: 100px; display: block; width: fit-content; margin: 10px auto 40px auto; text-align: center; background: linear-gradient(90deg, blue, purple); -webkit-background-clip: text; color: transparent; padding-bottom: 10px;">
+    Citadel
+  </p>
+  
+  <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+<button onclick="launchGame('https://fastly.jsdelivr.net/gh/robloxo655/allgamespossible5@main/index.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://static.vecteezy.com/system/resources/previews/027/179/375/non_2x/google-docs-icon-logo-symbol-free-png.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/gn-math2@main/new.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/gn-math-new!" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/adofai@main/j.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/adofai.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/dtr@main/index.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/deltarune%20image.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/hk@main/index.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/hollow%20knight.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/balatro@main/index.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/balatro-non-stretch.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/getaway-shootout3@main/index.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/getaway-shootout.png" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/mario-63@main/index.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/super-mario-63-a-ridiculously-impressive-flash-game-v0-8y12r1EA1N_l6A1evwU3IvLQzQe2Y4RJo8FX4kC-JRk.webp" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+    <button onclick="launchGame('https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/games/dogeubfix1.html')" style="width: 200px; height: 200px; border: 3px solid white; border-radius: 15px; overflow: hidden; background: none; cursor: pointer; padding: 0;">
+      <img src="https://cdn.jsdelivr.net/gh/robloxo655/my-game-site-@main/images/dogeunblocker.webp" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </button>
+  </div>
+</body>
